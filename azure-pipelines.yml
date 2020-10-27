@@ -19,22 +19,29 @@ stages:
           - bash: echo Devjob
           - bash: echo $(PipelinelevelVariable)
           - bash: echo $(environment)
-      - job: Devjob2
-        dependsOn: Devjob
-        steps:
-          - bash: echo Devjob2
+          - bash: echo $(Build.BuildNumber)
+          - bash: echo $(Build.BuildId)
+          - bash: echo $(Build.SourceBranchName)
+          - bash: echo $(Build.SourcesDirectory)
+          - bash: echo $(System.DefaultWorkingDirectory)
+          - bash: ls -R $(System.DefaultWorkingDirectory)
+          - bash: echo $(Build.ArtifactStagingDirectory)
+      # - job: Devjob2
+      #   dependsOn: Devjob
+      #   steps:
+      #     - bash: echo Devjob2
  
-  - stage: 'QADeploy'
-    dependsOn: DevDeploy
-    jobs:
-      - job: QAJob
-        steps:
-          - bash: echo QAJob
-  - stage: "ProdDeploy"
-    jobs:
-      - job: Prodjob
-        steps:
-          - bash: echo Prodjob
+  # - stage: 'QADeploy'
+  #   dependsOn: DevDeploy
+  #   jobs:
+  #     - job: QAJob
+  #       steps:
+  #         - bash: echo QAJob
+  # - stage: "ProdDeploy"
+  #   jobs:
+  #     - job: Prodjob
+  #       steps:
+  #         - bash: echo Prodjob
 
 
 
