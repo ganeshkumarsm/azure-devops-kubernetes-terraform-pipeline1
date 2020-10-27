@@ -11,10 +11,14 @@ pool:
 
 stages:
   - stage: 'DevDeploy'
+    variables: 
+      environment: Dev
     jobs:
       - job: Devjob
         steps:
           - bash: echo Devjob
+          - bash: echo $(PipelinelevelVariable)
+          - bash: echo $(environment)
       - job: Devjob2
         dependsOn: Devjob
         steps:
