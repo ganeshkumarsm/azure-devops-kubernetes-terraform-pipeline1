@@ -12,7 +12,7 @@ pool:
 stages:
   - stage: 'DevDeploy'
     variables: 
-      environment: Dev
+      environment: Siri
     jobs:
       - job: Devjob
         steps:
@@ -26,6 +26,11 @@ stages:
           - bash: echo $(System.DefaultWorkingDirectory)
           - bash: ls -R $(System.DefaultWorkingDirectory)
           - bash: echo $(Build.ArtifactStagingDirectory)
+          - bash: java -version
+          - bash: python --version
+          - bash: node --version
+          - bash: mvn --version
+
       # - job: Devjob2
       #   dependsOn: Devjob
       #   steps:
