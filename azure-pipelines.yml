@@ -30,7 +30,15 @@ stages:
           - bash: python --version
           - bash: node --version
           - bash: mvn --version
-
+          - bash: ls -R $(Build.ArtifactStagingDirectory)
+          - task: CopyFiles@2
+            inputs:
+              SourceFolder: '$(System.DefaultWorkingDirectory)'
+              Contents: |
+                **/*.yaml
+                **/*.tf
+              TargetFolder: '$(Build.ArtifactStagingDirectory)'
+          - bash: ls -R $(Build.ArtifactStagingDirectory)
       # - job: Devjob2
       #   dependsOn: Devjob
       #   steps:
